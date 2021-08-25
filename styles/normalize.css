@@ -1,0 +1,10 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+button{
+    border: none;
+}
+button:hover{
+    cursor: pointer;
+}
