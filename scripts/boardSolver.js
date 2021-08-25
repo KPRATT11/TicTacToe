@@ -1,6 +1,13 @@
-const boardSolver = function(board){
+const solveBoard = function(board){
     let boardDirections = getBoardDirections(board)
-    console.log(boardDirections)
+    let returnVal = 'none'
+    Object.keys(boardDirections).forEach((e) => {
+        if (boardDirections[e].every(v => v === boardDirections[e][0]) && boardDirections[e][0] !== '-'){
+            returnVal = e
+            return
+        }
+    })
+    return returnVal
 }
 
 function getBoardDirections(board){
@@ -12,13 +19,10 @@ function getBoardDirections(board){
         centre: [board[0][1], board[1][1], board[2][1]],
         left: [board[0][0], board[1][0], board[2][0]],
         leftDiag: [board[0][0], board[1][1], board[2][2]],
-        rightDiag: [board[0][2], board[1][1], [2][0]]
+        rightDiag: [board[0][2], board[1][1], board[2][0]]
     }
     return boardDirections
 }
 
 
-const gameBoard = [
-    ['1','2','3'],
-    ['4','5','6'],
-    ['7','8','9']]
+export default solveBoard

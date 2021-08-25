@@ -41,6 +41,13 @@ const bst = (function() {
         return filteredArray.length
     }
 
+    //Attatch click bindings
+    methods.attatchClickBindings = function(arr, callback){
+        for (let i = 0; i < arr.length; i ++){
+            arr[i].addEventListener('click', callback)
+        }
+    }
+
     return methods
 })()
 
