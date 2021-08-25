@@ -1,0 +1,15 @@
+.ready{
+    background-color: lightgreen;
+}
+
+.menuContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.playerMenu{
+    width: 200px;
+    background-color: rgb(201, 201, 201);
+}
+#player2Menu{
+    grid-column: 2;
+}

@@ -35,5 +35,18 @@
     background-color: red;
 }
 
+.winningMessage{
+    position:absolute;
+    background-color: blue;
+    width:100%;
+    text-align: center;
+    margin-top: 200px;
+
+    opacity: 0;
+}
+
+.winningMessageShow{
+    opacity: 1;
+}
 
 

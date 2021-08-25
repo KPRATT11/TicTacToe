@@ -1,4 +1,7 @@
 export const convertIDtoArrayPos = function(id){
-    let splitID = id.split(',')
+    if (id[0] === 'c'){
+        id = id.substring(1)
+    }
+    let splitID = id.split('-')
     return splitID.map(e => Number(e))
 }

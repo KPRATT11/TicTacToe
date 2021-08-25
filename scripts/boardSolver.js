@@ -7,7 +7,30 @@ const solveBoard = function(board){
             return
         }
     })
+    if (returnVal === 'none'){
+        returnVal = checkDraw(boardDirections)
+    }
     return returnVal
+}
+
+function checkDraw(boardDirections){
+    let topBoardFill = false
+    let middleBoardFill = false
+    let bottomBoardFill = false
+    if (boardDirections.top.filter(e => e !== '-').length === 3){
+        topBoardFill = true
+    }
+    if (boardDirections.middle.filter(e => e !== '-').length === 3){
+        middleBoardFill = true
+    }
+    if (boardDirections.bottom.filter(e => e !== '-').length === 3){
+        bottomBoardFill = true
+    }
+
+    if (topBoardFill === true && middleBoardFill === true && bottomBoardFill === true){
+        return 'draw'
+    }
+    return 'none'
 }
 
 function getBoardDirections(board){
