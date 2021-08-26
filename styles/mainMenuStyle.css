@@ -1,8 +1,14 @@
+@font-face {
+    font-family: gameIcon;
+    src: url("./../fonts/FUTHA___.TTF");
+}
+
 .ready{
     background-color: lightgreen;
 }
 
 .menuContainer{
+    margin-top:100px;
     text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -17,10 +23,87 @@
     margin: 0 auto;
 }
 .labelValueGrid{
+    margin-bottom: 60px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
+.labelValueGrid p{
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+.lvgIcon{
+    font-weight: 600;
+    font-size: 26px;
+    border-right: 3px solid #FFFFFF;
+    padding-right: 20px !important;
+    margin-right: 20px !important
+}
 .swapper{
+    justify-items: center;
+    align-items: center;
+    text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+}
+.swapperButton{
+    font-weight: 900;
+    font-size: 18px;
+    margin: 0;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.playerNameSubmit{
+    background-color: white;
+    font-size: 42px;
+    border-radius: 20px;
+    margin-top: 60px;
+    width: 300px;
+    height: 80px;
+}
+.swapperButtonSucess{
+    background-color: rgb(60, 206, 60);
+}
+.swapperIcon{
+    font-size: 40px;
+    font-weight: 900;
+}
+.oponentTypeSelector{
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 30px;
+    height: 90px;
+}
+.oponentType{
+    color: #fff;
+    margin: 0;
+    padding: 0 !important
+}
+.playerName{
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    width: 300px;
+    height: 60px;
+    outline: none;
+    background-color: #56AEFF;
+    border: none;
+    border-bottom: 3px solid #FFFFFF;
+}
+.roundsAmount{
+    color: white;
+    font-size: 60px;
+}
+.roundsLabel{
+    color: white;
+    font-size: 60px; 
+}
+.playerIcon{
+    font-family: 'gameIcon' !important;
 }

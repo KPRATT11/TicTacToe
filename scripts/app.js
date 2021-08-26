@@ -12,7 +12,7 @@ let gameBoard = [
 function setGame(){
     setInitialPlayerData()
     setInitialGameData()
-
+    console.log(gameProperties)
     gameProperties.currentPlayer = players.player1
     player1NameDisplay.textContent = players.player1.name
     player2NameDisplay.textContent = players.player2.name
@@ -21,7 +21,7 @@ function setGame(){
 
 function setInitialPlayerData(){
     let playerData = JSON.parse(localStorage.getItem('players'))
-    console.log(gameProperties)
+    
     players.player1 = {...players.player1, ...playerData.player1}
     players.player2 = {...players.player2, ...playerData.player2}
 }
@@ -54,6 +54,7 @@ let gameProperties = {
     currentPlayer: players.player2,
     roundsLeft: 3,
     aiEnabled: true,
+    aiDifficulty: 'easy',
     playerMovesEnabled: true ,
     startingRounds: 3,
 }
@@ -104,7 +105,6 @@ function decreaseRounds(){
 function handleBoardClick(e){
     let boardPieceCoords = convertIDtoArrayPos(e.target.id)
     if (gameProperties.playerMovesEnabled === false){
-        console.log('Wait your turn')
     }
     else if (gameBoard[boardPieceCoords[0]][boardPieceCoords[1]] !== '-'){
         console.log('already here') //TODO add function for what happens when it is already here
@@ -113,6 +113,7 @@ function handleBoardClick(e){
     }else{
         e.target.classList.add(`${gameProperties.currentPlayer.id}Clicked`)
         e.target.textContent = gameProperties.currentPlayer.icon
+        e.target.style.color = gameProperties.currentPlayer.color
         gameBoard[boardPieceCoords[0]][boardPieceCoords[1]] = gameProperties.currentPlayer.playerToken
         
         let solvedBoardDirection = solveBoard(gameBoard)
@@ -136,11 +137,12 @@ function playAi(){
     gameProperties.playerMovesEnabled = false
     let randomTimeOut = Math.floor(Math.random() * 500) + 500
     setTimeout(function(){
-        let aiMove = ai.easy(gameBoard)
+        let aiMove = ai[gameProperties.aiDifficulty](gameBoard)
         let aiMoveCoords = convertIDtoArrayPos(aiMove)
-        gameBoard[aiMoveCoords[0]][aiMoveCoords[1]] = 2
+        gameBoard[aiMoveCoords[0]][aiMoveCoords[1]] = "2"
         let sqaureToChange = document.getElementById(`c${aiMove}`)
         sqaureToChange.textContent = players.player2.icon
+        sqaureToChange.style.color = gameProperties.currentPlayer.color
         sqaureToChange.classList.add('player2Clicked')
         let solvedBoardDirection = solveBoard(gameBoard)
         if (solvedBoardDirection === "draw"){
@@ -174,17 +176,17 @@ function updateTurnInstructions(){
 //Game Won
 const resultsBanner = document.querySelector('.winningMessage');
 function gameWon(direction, player){
-    console.log(`${player.name} won with ${direction}`)
+    gameProperties.playerMovesEnabled = false
     player.score += 1
-    console.log(player.score)
-    player1PointsDisplay.textContent = players.player1.score
-    player2PointsDisplay.textContent = players.player2.score
+    player1PointsDisplay.textContent = `Score: ${players.player1.score}`
+    player2PointsDisplay.textContent = `Score: ${players.player2.score}`
 
     //Results Banner Stuff
     resultsBanner.classList.add("winningMessageShow")
     resultsBanner.textContent = `${player.name} won`
 
     setTimeout(() => {
+        gameProperties.playerMovesEnabled = true
         decreaseRounds()
         resetGame()
         resultsBanner.classList.remove("winningMessageShow")
@@ -193,17 +195,19 @@ function gameWon(direction, player){
 }
 
 function gameDraw(){
-    console.log('Game Drawed')
+    gameProperties.playerMovesEnabled = false
     player1PointsDisplay.textContent = players.player1.score
     player2PointsDisplay.textContent = players.player2.score
 
     resultsBanner.classList.add("winningMessageShow")
-    resultsBanner.textContent = `${player.name} won`
+    resultsBanner.textContent = `DRAW`
 
 
     setTimeout(() => {
+        gameProperties.playerMovesEnabled = true
         decreaseRounds()
         resetGame()
+        resultsBanner.classList.remove("winningMessageShow")
     }, 2000)
     
 }

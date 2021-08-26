@@ -1,6 +1,7 @@
 const solveBoard = function(board){
     let boardDirections = getBoardDirections(board)
     let returnVal = 'none'
+    console.log(boardDirections)
     Object.keys(boardDirections).forEach((e) => {
         if (boardDirections[e].every(v => v === boardDirections[e][0]) && boardDirections[e][0] !== '-'){
             returnVal = e

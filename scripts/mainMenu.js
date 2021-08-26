@@ -33,9 +33,9 @@ function playerReadyToggle(player){
 
 function playerReadyVisualToggle(player){
     if (player === 1){
-        player1Submit.classList.toggle('ready')
+        player1Submit.classList.toggle('swapperButtonSucess')
     }else if(player === 2){
-        player2Submit.classList.toggle('ready')
+        player2Submit.classList.toggle('swapperButtonSucess')
     }
 }
 
@@ -65,9 +65,11 @@ function generatePlayersObject(){
 }
 
 function generateGamePropertiesObject(){
+    console.log(smartAi)
     let gamePropertiesObject = {
         aiEnabled: aiEnabled,
-        startingRounds: amountOfRounds
+        startingRounds: amountOfRounds,
+        aiDifficulty: smartAiEnabled ? 'easy' : 'medium'
     }
     return gamePropertiesObject
 }
@@ -76,7 +78,7 @@ function generateGamePropertiesObject(){
 //I know this code is absolute donkey shit I wrote it late at night Im sorry
 
 //Icon Selecting
-const availableIcons = ['X','O','*','#','+']
+const availableIcons = ['G','D','I','K','N','Y','S','H']
 let player1Icon = availableIcons[0]
 let player2Icon = availableIcons[1]
 
@@ -155,4 +157,10 @@ roundsDecrease.addEventListener('click', () => {
 roundsIncrease.addEventListener('click',() => {
     amountOfRounds += 2
     roundAmountDisplayer.textContent = amountOfRounds
+})
+
+const smartAi = document.querySelector('#smartAi')
+let smartAiEnabled = false
+smartAi.addEventListener('click',() => {
+    smartAiEnabled = !smartAiEnabled
 })

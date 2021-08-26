@@ -12,18 +12,18 @@
 <body>
     <div class="menuContainer">
         <div class="playerMenu card" id="player1Menu">
-            <input type="text" class="playerName" id="player1Name">
-
+            <input type="text" class="playerName" id="player1Name" value="Player 1">
+            <div class="oponentTypeSelector"></div>
             <div class="labelValueGrid">
-                <p>Player Color</p>
+                <p class="lvgIcon">COLOR</p>
                 <input class="playerColorPicker" id="player1ColorPicker" type="color" value="#0073ff">
             </div>
 
             <div class="labelValueGrid">
-                <p>Choose Icon</p>
+                <p class="lvgIcon">ICON</p>
                 <div class="playerIconSelector swapper" id="player2IconSelector">
                     <button class="swapperButton" id="player1IconSelectorLeft"><</button>
-                        <p class="playerIcon" id="player1Icon">O</p>
+                        <p class="playerIcon swapperIcon" id="player1Icon">D</p>
                     <button class="swapperButton" id="player1IconSelectorRight">></button>
                 </div>
             </div>
@@ -32,30 +32,34 @@
         </div>
 
         <div class="gameMenu card">
-            <h2>Rounds</h2>
+            <h2 class="roundsLabel">Rounds</h2>
             <div class="swapper">
                 <button class="swapperButton" id="roundsAmountDecrease"><</button>
                 <h2 class="roundsAmount">3</h2>
                 <button class="swapperButton" id="roundsAmountIncrease">></button>
             </div>
+            <div class="labelValueGrid">
+                <p class="lvgIcon">SMART AI</p>
+                <input class="playerColorPicker" id="smartAi" type="checkbox">
+            </div>
         </div>
 
         <div class="playerMenu card" id="player2Menu">
-            <input type="text" class="playerName" id="player2Name">
+            <input type="text" class="playerName" id="player2Name" value="Player 2">
             <div class="oponentTypeSelector swapper">
-                <button class="typeSelectorButton" id="typeSelectorLeft"><</button>
-                <p class="oponentType">Player</p>
-                <button class="typeSelectorButton" id="typeSelectorRight">></button>
+                <button class="typeSelectorButton swapperButton" id="typeSelectorLeft"><</button>
+                    <p class="oponentType swapperIcon">Player</p>
+                <button class="typeSelectorButton swapperButton" id="typeSelectorRight">></button>
             </div>
             <div class="labelValueGrid">
-                <p>Player Color</p>
+                <p class="lvgIcon">COLOR</p>
                 <input class="playerColorPicker" id="player2ColorPicker" type="color" value="#fc2003">
             </div>
             <div class="labelValueGrid">
-                <p>Choose Icon</p>
+                <p class="lvgIcon">ICON</p>
             <div class="playerIconSelector swapper" id="player2IconSelector">
                     <button class="swapperButton" id="player2IconSelectorLeft"><</button>
-                        <p class="playerIcon" id="player2Icon">X</p>
+                        <p class="playerIcon swapperIcon" id="player2Icon">G</p>
                     <button class="swapperButton" id="player2IconSelectorRight">></button>
                 </div>
             </div>

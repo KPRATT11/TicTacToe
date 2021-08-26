@@ -48,5 +48,8 @@ function updateWinnerMessage(){
     }
 }
 
+//Handle play again
+const playAgainButton = document.querySelector('button')
+
 getAllData()
 updateWinnerMessage()
