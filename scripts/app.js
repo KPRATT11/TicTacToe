@@ -14,7 +14,8 @@ function setGame(){
     setInitialGameData()
 
     gameProperties.currentPlayer = players.player1
-    
+    player1NameDisplay.textContent = players.player1.name
+    player2NameDisplay.textContent = players.player2.name
     updateTurnInstructions()
 }
 
@@ -46,6 +47,8 @@ let players = {
 }
 const player1PointsDisplay = document.querySelector('#player1Score')
 const player2PointsDisplay = document.querySelector('#player2Score')
+const player1NameDisplay = document.querySelector('#player1Name')
+const player2NameDisplay = document.querySelector('#player2Name')
 
 let gameProperties = {
     currentPlayer: players.player2,
@@ -92,8 +95,6 @@ function resetGame(){
 
 //Round Handeling 
 const roundsDisplayer = document.querySelector('.roundsLeft')
-
-
 function decreaseRounds(){
     gameProperties.roundsLeft -= 1
     roundsDisplayer.textContent = `ROUNDS REMAINING: ${gameProperties.roundsLeft}`
