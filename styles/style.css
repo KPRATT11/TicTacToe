@@ -161,13 +161,18 @@
 
 #player2Container{
     grid-column: 3;
+    
+}
+.player2SlideIn{
     -webkit-animation: slide-in-blurred-right 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
     animation: slide-in-blurred-right 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-
 }
-#player1Container{
+.player1SlideIn{
   -webkit-animation: slide-in-blurred-left 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
     animation: slide-in-blurred-left 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+}
+#player1Container{
+  
 }
  @-webkit-keyframes slide-in-blurred-right {
   0% {
@@ -252,8 +257,8 @@
 }
 
 .playerTurn{
-    -webkit-animation: jello-horizontal 1s both;
-    animation: jello-horizontal 1s both;
+    -webkit-animation: jello-horizontal 1s both !important;
+    animation: jello-horizontal 1s both !important;
 }
 @-webkit-keyframes jello-horizontal {
     0% {

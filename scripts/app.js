@@ -13,6 +13,15 @@ const soundOpen = document.querySelector('.soundOpen')
 const soundPlace = document.querySelector('.soundPlace')
 const soundBell = document.querySelector('.soundBell')
 
+const player1Container = document.querySelector('#player1Container')
+const player2Container = document.querySelector('#player2Container')
+
+player1Container.classList.add('player1SlideIn')
+setTimeout(() => {player1Container.classList.remove('player1SlideIn')}, 600)
+
+player2Container.classList.add('player2SlideIn')
+setTimeout(() => {player2Container.classList.remove('player2SlideIn')}, 600)
+
 //Sets the game properties from local storage
 function setGame(){
     setInitialPlayerData()

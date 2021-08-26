@@ -1,0 +1,43 @@
+Date : 2021-08-26 21:26:52
+Directory : /home/keeganpratt/sei/projects/01-TikTakToe
+Total : 15 files,  1538 codes, 46 comments, 155 blanks, all 1739 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| CSS        |          5 |        846 |         11 |         40 |        897 |
+| JavaScript |          7 |        565 |         35 |        101 |        701 |
+| HTML       |          3 |        127 |          0 |         14 |        141 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                 | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                    |         15 |      1,538 |         46 |        155 |      1,739 |
+| scripts                                                              |          7 |        565 |         35 |        101 |        701 |
+| styles                                                               |          5 |        846 |         11 |         40 |        897 |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                             | language   | code       | comment    | blank      | total      |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /home/keeganpratt/sei/projects/01-TikTakToe/game.html                | HTML       |         43 |          0 |          6 |         49 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/gameFinished.html        | HTML       |         17 |          0 |          1 |         18 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/index.html               | HTML       |         67 |          0 |          7 |         74 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/scripts/ai.js            | JavaScript |         77 |          0 |          8 |         85 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/scripts/app.js           | JavaScript |        196 |         17 |         37 |        250 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/scripts/boardSolver.js   | JavaScript |         47 |          0 |          5 |         52 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/scripts/bst.js           | JavaScript |         37 |          7 |         10 |         54 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/scripts/gameFinished.js  | JavaScript |         47 |          2 |          9 |         58 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/scripts/helpers.js       | JavaScript |          7 |          0 |          1 |          8 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/scripts/mainMenu.js      | JavaScript |        154 |          9 |         31 |        194 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/styles/gameFinished.css  | CSS        |        170 |          0 |          7 |        177 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/styles/global.css        | CSS        |        113 |         11 |         10 |        134 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/styles/mainMenuStyle.css | CSS        |        131 |          0 |          5 |        136 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/styles/normalize.css     | CSS        |         12 |          0 |          0 |         12 |
+| /home/keeganpratt/sei/projects/01-TikTakToe/styles/style.css         | CSS        |        420 |          0 |         18 |        438 |
+| Total                                                                |            |      1,538 |         46 |        155 |      1,739 |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+

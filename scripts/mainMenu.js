@@ -114,10 +114,10 @@ const player1IconDisplay = document.querySelector('#player1Icon')
 const player2IconDisplay = document.querySelector('#player2Icon')
 
 //I apologize for this. If I have time I will come fix it up... but if you are seeing this comment it means I didnt have time
-player1LeftArrow.addEventListener('click',() => {player1Icon = shiftIcons(player1Icon, false); updateIcons()})
-player1RightArrow.addEventListener('click',() => {player1Icon = shiftIcons(player1Icon, true); updateIcons()})
-player2LeftArrow.addEventListener('click',() => {player2Icon = shiftIcons(player2Icon, false); updateIcons()})
-player2RightArrow.addEventListener('click',() => {player2Icon = shiftIcons(player2Icon, true); updateIcons()})
+player1LeftArrow.addEventListener('click',() => {player1Icon = shiftIcons(player1Icon, false); updateIcons(); animateIcons(1, 'right')})
+player1RightArrow.addEventListener('click',() => {player1Icon = shiftIcons(player1Icon, true); updateIcons(); animateIcons(1, 'left')})
+player2LeftArrow.addEventListener('click',() => {player2Icon = shiftIcons(player2Icon, false); updateIcons(); animateIcons(2, 'right')})
+player2RightArrow.addEventListener('click',() => {player2Icon = shiftIcons(player2Icon, true); updateIcons(); animateIcons(2, 'left')})
 
 
 
@@ -141,6 +141,34 @@ function shiftIcons(player, right){
 function updateIcons(){
     player1IconDisplay.textContent = player1Icon
     player2IconDisplay.textContent = player2Icon
+}
+
+function animateIcons(player, direction){
+    if (player === 1){
+        if (direction === "left"){
+            player1IconDisplay.classList.add('blurLeft')
+            setTimeout(() => {
+                player1IconDisplay.classList.remove('blurLeft')
+            }, 200)
+        }else{
+            player1IconDisplay.classList.add('blurRight')
+            setTimeout(() => {
+                player1IconDisplay.classList.remove('blurRight')
+            }, 200)
+        }
+    }else if (player === 2){
+        if (direction === "left"){
+            player2IconDisplay.classList.add('blurLeft')
+            setTimeout(() => {
+                player2IconDisplay.classList.remove('blurLeft')
+            }, 200)
+        }else{
+            player2IconDisplay.classList.add('blurRight')
+            setTimeout(() => {
+                player2IconDisplay.classList.remove('blurRight')
+            }, 200)
+        }
+    }
 }
 
 //Select player 2's mode
@@ -174,6 +202,9 @@ roundsDecrease.addEventListener('click', () => {
     amountOfRounds -= 2
     if (amountOfRounds < 1){
         amountOfRounds = 1
+        
+    }else {
+        animateRoundAmount('right')
     }
     roundAmountDisplayer.textContent = amountOfRounds
 })
@@ -181,7 +212,22 @@ roundsDecrease.addEventListener('click', () => {
 roundsIncrease.addEventListener('click',() => {
     amountOfRounds += 2
     roundAmountDisplayer.textContent = amountOfRounds
+    animateRoundAmount('left')
 })
+
+function animateRoundAmount(direction){
+    if (direction === "left"){
+        roundAmountDisplayer.classList.add('blurLeft')
+        setTimeout(() => {
+            roundAmountDisplayer.classList.remove('blurLeft')
+        }, 200)
+    }else{
+        roundAmountDisplayer.classList.add('blurRight')
+        setTimeout(() => {
+            roundAmountDisplayer.classList.remove('blurRight')
+        }, 200)
+    }
+}
 
 const smartAi = document.querySelector('#smartAi')
 smartAi.checked = false
