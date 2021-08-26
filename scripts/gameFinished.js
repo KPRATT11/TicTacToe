@@ -49,7 +49,10 @@ function updateWinnerMessage(){
 }
 
 //Handle play again
-const playAgainButton = document.querySelector('button')
+const playAgainButton = document.querySelector('.startAgain')
+playAgainButton.addEventListener('click', () => {
+    window.location.href = "./index.html"
+})
 
 getAllData()
 updateWinnerMessage()

@@ -34,18 +34,35 @@ function playerReadyToggle(player){
 function playerReadyVisualToggle(player){
     if (player === 1){
         player1Submit.classList.toggle('swapperButtonSucess')
+        if (player1Submit.textContent === 'Press To Ready...'){
+            player1Submit.textContent = "Ready"
+        }else{
+            setTimeout(() => {
+                player1Submit.textContent = "Press To Ready..."
+            }, 100)
+        }
     }else if(player === 2){
         player2Submit.classList.toggle('swapperButtonSucess')
+        console.log(player2Submit.textContent)
+        if (player2Submit.textContent === 'Press To Ready...'){
+            player2Submit.textContent = "Ready"
+        }else{
+            setTimeout(() => {
+                player2Submit.textContent = "Press To Ready..."
+            }, 100)
+        }
     }
 }
 
 function beginGame(){
-    console.log('yall both Ready')
-    let playersObject = generatePlayersObject()
-    let gamePropertiesObject = generateGamePropertiesObject()
-    localStorage.setItem('gameProperties', JSON.stringify(gamePropertiesObject))
-    localStorage.setItem('players', JSON.stringify(playersObject))
-    window.location.href = "./game.html"
+    setTimeout(function(){
+        let playersObject = generatePlayersObject()
+        let gamePropertiesObject = generateGamePropertiesObject()
+        localStorage.setItem('gameProperties', JSON.stringify(gamePropertiesObject))
+        localStorage.setItem('players', JSON.stringify(playersObject))
+        window.location.href = "./game.html"
+    }, 300)
+    
 }
 
 function generatePlayersObject(){

@@ -159,11 +159,21 @@ function playAi(){
 }
 
 //Swap players
+const player1ScoreBoard = document.querySelector('#player1Container')
+const player2ScoreBoard = document.querySelector('#player2Container')
 function swapPlayers(){
     if (gameProperties.currentPlayer === players.player1){
+        player2ScoreBoard.classList.add('playerTurn')
         gameProperties.currentPlayer = players.player2
+        setTimeout(() => {
+            player2ScoreBoard.classList.remove('playerTurn')
+        },1000)
     }else {
+        player1ScoreBoard.classList.add('playerTurn')
         gameProperties.currentPlayer = players.player1
+        setTimeout(() => {
+            player1ScoreBoard.classList.remove('playerTurn')
+        },1000)
     }
 }
 

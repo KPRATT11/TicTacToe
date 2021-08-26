@@ -3,9 +3,7 @@
     src: url("./../fonts/FUTHA___.TTF");
 }
 
-.ready{
-    background-color: lightgreen;
-}
+
 
 .menuContainer{
     margin-top:100px;
@@ -34,6 +32,7 @@
     margin: 0;
 }
 .lvgIcon{
+    line-height: 60px;
     font-weight: 600;
     font-size: 26px;
     border-right: 3px solid #FFFFFF;
@@ -48,25 +47,41 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 .swapperButton{
+    transition: 300ms;
     font-weight: 900;
     font-size: 18px;
     margin: 0;
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     background-color: white;
     border-radius: 50%;
 }
+.swapperButton:hover{
+    cursor: pointer;
+    transform: rotate(20deg)
+}
+.swapperButton:active{
+    transition: 100ms;
+    transform: rotate(-10deg);
+    background-color: grey;
+}
 
 .playerNameSubmit{
+    transition: 200ms;
     background-color: white;
-    font-size: 42px;
+    font-size: 28px;
     border-radius: 20px;
     margin-top: 60px;
     width: 300px;
     height: 80px;
 }
 .swapperButtonSucess{
+    font-size: 46px;
     background-color: rgb(60, 206, 60);
+}
+.playerNameSubmit:hover{
+    color: white;
+    background-color: #2c1320
 }
 .swapperIcon{
     font-size: 40px;
@@ -106,4 +121,10 @@
 }
 .playerIcon{
     font-family: 'gameIcon' !important;
+}
+.playerColorPicker{
+   border: none;
+
+   width: 60px;
+   height: 60px
 }
