@@ -83,10 +83,16 @@ function generatePlayersObject(){
 
 function generateGamePropertiesObject(){
     console.log(smartAi)
+    let aiDifficulty
+    if (smartAiEnabled){
+        aiDifficulty = "medium"
+    }else {
+        aiDifficulty = "easy"
+    }
     let gamePropertiesObject = {
         aiEnabled: aiEnabled,
         startingRounds: amountOfRounds,
-        aiDifficulty: smartAiEnabled ? 'easy' : 'medium'
+        aiDifficulty: aiDifficulty,
     }
     return gamePropertiesObject
 }
@@ -151,6 +157,7 @@ function player2ModeChange(){
     if (aiEnabled){
         oponentType.textContent = "Player"
         aiEnabled = false
+        console.log(aiEnabled)
     }else {
         oponentType.textContent = "AI"
         aiEnabled = true
@@ -177,7 +184,11 @@ roundsIncrease.addEventListener('click',() => {
 })
 
 const smartAi = document.querySelector('#smartAi')
+smartAi.checked = false
 let smartAiEnabled = false
+console.log(smartAiEnabled)
 smartAi.addEventListener('click',() => {
+    
     smartAiEnabled = !smartAiEnabled
+    console.log(smartAiEnabled)
 })

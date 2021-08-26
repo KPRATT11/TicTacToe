@@ -2,7 +2,10 @@
     font-family: gameIcon;
     src: url("./../fonts/FUTHA___.TTF");
 }
-
+@font-face{
+    font-family: arrowIcon;
+    src: url("./../fonts/Arrows.ttf")
+}
 
 
 .menuContainer{
@@ -47,9 +50,12 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 .swapperButton{
+    color:#56AEFF;
+    font-family: arrowIcon;
     transition: 300ms;
     font-weight: 900;
-    font-size: 18px;
+    font-size: 30px;
+    line-height: 55px;
     margin: 0;
     width: 50px;
     height: 50px;

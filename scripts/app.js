@@ -8,6 +8,11 @@ let gameBoard = [
     ['-','-','-'],
     ['-','-','-']]
 
+//Get game audio
+const soundOpen = document.querySelector('.soundOpen')
+const soundPlace = document.querySelector('.soundPlace')
+const soundBell = document.querySelector('.soundBell')
+
 //Sets the game properties from local storage
 function setGame(){
     setInitialPlayerData()
@@ -17,6 +22,7 @@ function setGame(){
     player1NameDisplay.textContent = players.player1.name
     player2NameDisplay.textContent = players.player2.name
     updateTurnInstructions()
+    soundOpen.play()
 }
 
 function setInitialPlayerData(){
@@ -98,7 +104,9 @@ function resetGame(){
 const roundsDisplayer = document.querySelector('.roundsLeft')
 function decreaseRounds(){
     gameProperties.roundsLeft -= 1
+    roundsDisplayer.classList.add('displayEntrance')
     roundsDisplayer.textContent = `ROUNDS REMAINING: ${gameProperties.roundsLeft}`
+    setTimeout(() => roundsDisplayer.classList.remove('displayEntrance'), 500)
 }
 
 //Pieces placed
@@ -107,10 +115,15 @@ function handleBoardClick(e){
     if (gameProperties.playerMovesEnabled === false){
     }
     else if (gameBoard[boardPieceCoords[0]][boardPieceCoords[1]] !== '-'){
+        e.target.classList.add('noClick')
+        setTimeout(() => {e.target.classList.remove('noClick')}, 400)
         console.log('already here') //TODO add function for what happens when it is already here
 
     //This else occurs when a click is sucessful
     }else{
+        //Play Sound
+        soundPlace.play()
+
         e.target.classList.add(`${gameProperties.currentPlayer.id}Clicked`)
         e.target.textContent = gameProperties.currentPlayer.icon
         e.target.style.color = gameProperties.currentPlayer.color
@@ -134,9 +147,13 @@ function handleBoardClick(e){
 
 //ai Functions
 function playAi(){
+    //Play Sound
+    
+
     gameProperties.playerMovesEnabled = false
     let randomTimeOut = Math.floor(Math.random() * 500) + 500
     setTimeout(function(){
+        soundPlace.play()
         let aiMove = ai[gameProperties.aiDifficulty](gameBoard)
         let aiMoveCoords = convertIDtoArrayPos(aiMove)
         gameBoard[aiMoveCoords[0]][aiMoveCoords[1]] = "2"
@@ -186,6 +203,7 @@ function updateTurnInstructions(){
 //Game Won
 const resultsBanner = document.querySelector('.winningMessage');
 function gameWon(direction, player){
+    soundBell.play()
     gameProperties.playerMovesEnabled = false
     player.score += 1
     player1PointsDisplay.textContent = `Score: ${players.player1.score}`
@@ -205,6 +223,7 @@ function gameWon(direction, player){
 }
 
 function gameDraw(){
+    soundBell.play()
     gameProperties.playerMovesEnabled = false
     player1PointsDisplay.textContent = players.player1.score
     player2PointsDisplay.textContent = players.player2.score
@@ -222,3 +241,10 @@ function gameDraw(){
     
 }
 setGame()
+
+
+//backButton
+const backButton = document.querySelector('.backButton')
+backButton.addEventListener("click", () => {
+    window.location.href = "./index.html"
+})
