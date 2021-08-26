@@ -10,14 +10,27 @@ let gameBoard = [
 
 //Sets the game properties from local storage
 function setGame(){
+    setInitialPlayerData()
+    setInitialGameData()
+
+    gameProperties.currentPlayer = players.player1
+    
+    updateTurnInstructions()
+}
+
+function setInitialPlayerData(){
     let playerData = JSON.parse(localStorage.getItem('players'))
     console.log(gameProperties)
     players.player1 = {...players.player1, ...playerData.player1}
     players.player2 = {...players.player2, ...playerData.player2}
-    gameProperties.currentPlayer = players.player1
-    updateTurnInstructions()
 }
 
+function setInitialGameData(){
+    let gameObjectData = JSON.parse(localStorage.getItem('gameProperties'))
+    gameProperties = {...gameProperties, ...gameObjectData}
+    gameProperties.roundsLeft = gameProperties.startingRounds
+    roundsDisplayer.textContent = `ROUNDS REMAINING: ${gameProperties.roundsLeft}`
+}
 
 let players = {
     player1: {
@@ -38,7 +51,8 @@ let gameProperties = {
     currentPlayer: players.player2,
     roundsLeft: 3,
     aiEnabled: true,
-    playerMovesEnabled: true 
+    playerMovesEnabled: true ,
+    startingRounds: 3,
 }
 
 //Get Game Board Divs
@@ -49,6 +63,15 @@ bst.attatchClickBindings(boardSlotsElement, handleBoardClick)
 
 //Handle Game Reset
 function resetGame(){
+    if (players.player1.score === Math.ceil(gameProperties.startingRounds / 2) 
+        || 
+        players.player2.score === Math.ceil(gameProperties.startingRounds / 2
+        || 
+        gameProperties.roundsLeft === 0
+        )){
+        localStorage.setItem('players', JSON.stringify(players))
+        window.location.href = "./gameFinished.html"
+    }
     //Reset gameboard
     gameBoard = [
         ['-','-','-'],
@@ -62,18 +85,18 @@ function resetGame(){
         e.classList.remove('player2Clicked')
     })
 
-    if (gameProperties.currentPlayer === players.player2){
+    if (gameProperties.currentPlayer === players.player2 && gameProperties.aiEnabled === true){
         playAi()
     }
 }
 
 //Round Handeling 
 const roundsDisplayer = document.querySelector('.roundsLeft')
-roundsDisplayer.textContent = gameProperties.roundsLeft
+
 
 function decreaseRounds(){
     gameProperties.roundsLeft -= 1
-    roundsDisplayer.textContent = Number(roundsDisplayer.textContent) - 1
+    roundsDisplayer.textContent = `ROUNDS REMAINING: ${gameProperties.roundsLeft}`
 }
 
 //Pieces placed
@@ -110,6 +133,7 @@ function handleBoardClick(e){
 //ai Functions
 function playAi(){
     gameProperties.playerMovesEnabled = false
+    let randomTimeOut = Math.floor(Math.random() * 500) + 500
     setTimeout(function(){
         let aiMove = ai.easy(gameBoard)
         let aiMoveCoords = convertIDtoArrayPos(aiMove)
@@ -123,11 +147,11 @@ function playAi(){
         }else if (solvedBoardDirection !== "none" && solvedBoardDirection !== "draw"){
             gameWon(solvedBoardDirection, players.player2)
         }
-    
+        
         swapPlayers()
         updateTurnInstructions()
         gameProperties.playerMovesEnabled = true
-    }, 700)
+    }, randomTimeOut)
     
 }
 
@@ -151,6 +175,7 @@ const resultsBanner = document.querySelector('.winningMessage');
 function gameWon(direction, player){
     console.log(`${player.name} won with ${direction}`)
     player.score += 1
+    console.log(player.score)
     player1PointsDisplay.textContent = players.player1.score
     player2PointsDisplay.textContent = players.player2.score
 
@@ -173,6 +198,7 @@ function gameDraw(){
 
     resultsBanner.classList.add("winningMessageShow")
     resultsBanner.textContent = `${player.name} won`
+
 
     setTimeout(() => {
         decreaseRounds()

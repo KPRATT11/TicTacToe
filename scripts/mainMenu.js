@@ -42,6 +42,8 @@ function playerReadyVisualToggle(player){
 function beginGame(){
     console.log('yall both Ready')
     let playersObject = generatePlayersObject()
+    let gamePropertiesObject = generateGamePropertiesObject()
+    localStorage.setItem('gameProperties', JSON.stringify(gamePropertiesObject))
     localStorage.setItem('players', JSON.stringify(playersObject))
     window.location.href = "./game.html"
 }
@@ -60,6 +62,14 @@ function generatePlayersObject(){
         }
     }
     return playersObject
+}
+
+function generateGamePropertiesObject(){
+    let gamePropertiesObject = {
+        aiEnabled: aiEnabled,
+        startingRounds: amountOfRounds
+    }
+    return gamePropertiesObject
 }
 
 
@@ -127,3 +137,22 @@ function player2ModeChange(){
         aiEnabled = true
     }
 }
+
+//GAME PROPERTIES
+let amountOfRounds = 3
+const roundAmountDisplayer = document.querySelector('.roundsAmount')
+const roundsDecrease = document.querySelector('#roundsAmountDecrease')
+const roundsIncrease = document.querySelector('#roundsAmountIncrease')
+
+roundsDecrease.addEventListener('click', () => {
+    amountOfRounds -= 2
+    if (amountOfRounds < 1){
+        amountOfRounds = 1
+    }
+    roundAmountDisplayer.textContent = amountOfRounds
+})
+
+roundsIncrease.addEventListener('click',() => {
+    amountOfRounds += 2
+    roundAmountDisplayer.textContent = amountOfRounds
+})

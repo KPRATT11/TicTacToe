@@ -7,40 +7,62 @@
     <title>Document</title>
     <link rel="stylesheet" href="./styles/normalize.css">
     <link rel="stylesheet" href="./styles/mainMenuStyle.css">
+    <link rel="stylesheet" href="./styles/global.css">
 </head>
 <body>
     <div class="menuContainer">
-        <div class="playerMenu" id="player1Menu">
-            <p>Name:</p>
+        <div class="playerMenu card" id="player1Menu">
             <input type="text" class="playerName" id="player1Name">
-            <p>Player Color</p>
-            <input class="playerColorPicker" id="player1ColorPicker" type="color">
-            <div class="playerIconSelector swapper" id="player2IconSelector">
-                <button class="swapperButton" id="player1IconSelectorLeft"><</button>
-                <p class="playerIcon" id="player1Icon">O</p>
-                <button class="swapperButton" id="player1IconSelectorRight">></button>
+
+            <div class="labelValueGrid">
+                <p>Player Color</p>
+                <input class="playerColorPicker" id="player1ColorPicker" type="color" value="#0073ff">
             </div>
+
+            <div class="labelValueGrid">
+                <p>Choose Icon</p>
+                <div class="playerIconSelector swapper" id="player2IconSelector">
+                    <button class="swapperButton" id="player1IconSelectorLeft"><</button>
+                        <p class="playerIcon" id="player1Icon">O</p>
+                    <button class="swapperButton" id="player1IconSelectorRight">></button>
+                </div>
+            </div>
+            
             <button class="playerNameSubmit" id="player1Submit">Submit</button>
         </div>
 
-        <div class="playerMenu" id="player2Menu">
+        <div class="gameMenu card">
+            <h2>Rounds</h2>
+            <div class="swapper">
+                <button class="swapperButton" id="roundsAmountDecrease"><</button>
+                <h2 class="roundsAmount">3</h2>
+                <button class="swapperButton" id="roundsAmountIncrease">></button>
+            </div>
+        </div>
+
+        <div class="playerMenu card" id="player2Menu">
+            <input type="text" class="playerName" id="player2Name">
             <div class="oponentTypeSelector swapper">
                 <button class="typeSelectorButton" id="typeSelectorLeft"><</button>
                 <p class="oponentType">Player</p>
                 <button class="typeSelectorButton" id="typeSelectorRight">></button>
             </div>
-            <p>Name:</p>
-            <input type="text" class="playerName" id="player2Name">
-            <p>Player Color</p>
-            <input class="playerColorPicker" id="player2ColorPicker" type="color">
-
+            <div class="labelValueGrid">
+                <p>Player Color</p>
+                <input class="playerColorPicker" id="player2ColorPicker" type="color" value="#fc2003">
+            </div>
+            <div class="labelValueGrid">
+                <p>Choose Icon</p>
             <div class="playerIconSelector swapper" id="player2IconSelector">
-                <button class="swapperButton" id="player2IconSelectorLeft"><</button>
-                <p class="playerIcon" id="player2Icon">X</p>
-                <button class="swapperButton" id="player2IconSelectorRight">></button>
+                    <button class="swapperButton" id="player2IconSelectorLeft"><</button>
+                        <p class="playerIcon" id="player2Icon">X</p>
+                    <button class="swapperButton" id="player2IconSelectorRight">></button>
+                </div>
             </div>
             <button class="playerNameSubmit" id="player2Submit">Submit</button>
         </div>
+
+        
     </div>
 
     <script type="module" src="./scripts/mainMenu.js"></script>

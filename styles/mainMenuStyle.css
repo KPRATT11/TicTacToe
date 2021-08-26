@@ -3,13 +3,24 @@
 }
 
 .menuContainer{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+#player2Menu{
+    grid-column: 3;
+}
+.gameMenu{
+    grid-column: 2;
+}
+.playerMenu{
+    margin: 0 auto;
+}
+.labelValueGrid{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.playerMenu{
-    width: 200px;
-    background-color: rgb(201, 201, 201);
-}
-#player2Menu{
-    grid-column: 2;
+.swapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
