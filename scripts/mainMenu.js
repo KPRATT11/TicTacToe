@@ -49,6 +49,7 @@ function updateOnStart(){
         roundAmountDisplayer.textContent = gameObjectData.startingRounds
         updateIcons()
     }
+
 }
 
 //This array checks for the players that are ready
@@ -247,9 +248,11 @@ roundsDecrease.addEventListener('click', () => {
 })
 
 roundsIncrease.addEventListener('click',() => {
-    amountOfRounds += 2
-    roundAmountDisplayer.textContent = amountOfRounds
-    animateRoundAmount('left')
+    if (amountOfRounds !== 15){
+        amountOfRounds += 2
+        roundAmountDisplayer.textContent = amountOfRounds
+        animateRoundAmount('left')
+    }
 })
 
 function animateRoundAmount(direction){
