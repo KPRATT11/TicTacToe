@@ -1,15 +1,19 @@
-import bst from "./bst.js"
+import bst from "./bst.js"  //BST is a helper function library that I am slowly adding to as I think of functions
 import solveBoard from "./boardSolver.js"
-import {convertIDtoArrayPos} from "./helpers.js"
+import {convertIDtoArrayPos} from "./helpers.js" //This helper library is for functions that are more specific to this program
 import ai from "./ai.js"
 
+
+//set initial game board
 let gameBoard = [
     ['-','-','-'],
     ['-','-','-'],
     ['-','-','-']]
 
 //Get game audio
-const soundOpen = document.querySelector('.soundOpen')
+
+
+const soundOpen = document.querySelector('.soundOpen') //Sound not working due to browsers security settings... dont know how to fix it atm
 const soundPlace = document.querySelector('.soundPlace')
 const soundBell = document.querySelector('.soundBell')
 
@@ -17,7 +21,7 @@ const player1Container = document.querySelector('#player1Container')
 const player2Container = document.querySelector('#player2Container')
 
 player1Container.classList.add('player1SlideIn')
-setTimeout(() => {player1Container.classList.remove('player1SlideIn')}, 600)
+setTimeout(() => {player1Container.classList.remove('player1SlideIn')}, 600) //We need to remove the class otherwise the squish animation doesnt play correctly
 
 player2Container.classList.add('player2SlideIn')
 setTimeout(() => {player2Container.classList.remove('player2SlideIn')}, 600)
@@ -26,7 +30,6 @@ setTimeout(() => {player2Container.classList.remove('player2SlideIn')}, 600)
 function setGame(){
     setInitialPlayerData()
     setInitialGameData()
-    console.log(gameProperties)
     gameProperties.currentPlayer = players.player1
     player1NameDisplay.textContent = players.player1.name
     player2NameDisplay.textContent = players.player2.name
@@ -36,7 +39,6 @@ function setGame(){
 
 function setInitialPlayerData(){
     let playerData = JSON.parse(localStorage.getItem('players'))
-    
     players.player1 = {...players.player1, ...playerData.player1}
     players.player2 = {...players.player2, ...playerData.player2}
 }
@@ -70,18 +72,21 @@ let gameProperties = {
     roundsLeft: 3,
     aiEnabled: true,
     aiDifficulty: 'easy',
-    playerMovesEnabled: true ,
+    playerMovesEnabled: true, //This property is used to disable user input during ai or when the win or loss banner is showing
     startingRounds: 3,
 }
 
 //Get Game Board Divs
-const gameBoardElement = document.querySelector('.gameBoard');
 const boardSlotsElement = document.querySelectorAll('.boardSlot');
 
+//this functions loops through a node list and attaches a event listener of click to each element
 bst.attatchClickBindings(boardSlotsElement, handleBoardClick)
 
 //Handle Game Reset
 function resetGame(){
+
+    //check if either a player has a score that means they can no longer lose the overall game
+    //or if the rounds have ran out
     console.log(gameProperties.roundsLeft)
     if (players.player1.score === Math.ceil(gameProperties.startingRounds / 2) 
         || 
@@ -105,6 +110,9 @@ function resetGame(){
         e.classList.remove('player2Clicked')
     })
 
+
+    //checks if its the ai's turn to go first - this is required as normally it only plays the ai after a player has clicked
+    //which is obviously not going to happen if its the ais turn first
     if (gameProperties.currentPlayer === players.player2 && gameProperties.aiEnabled === true){
         playAi()
     }
@@ -121,14 +129,17 @@ function decreaseRounds(){
 
 //Pieces placed
 function handleBoardClick(e){
+    //take the id of the element we have clicked on and convert it to a format that is easier to work with for arrays
     let boardPieceCoords = convertIDtoArrayPos(e.target.id)
+
+    //This empty if statement exists incase I want to add a function if a player clicks when not meant to
     if (gameProperties.playerMovesEnabled === false){
     }
+
+    //Check if a piece is already here
     else if (gameBoard[boardPieceCoords[0]][boardPieceCoords[1]] !== '-'){
         e.target.classList.add('noClick')
         setTimeout(() => {e.target.classList.remove('noClick')}, 400)
-        console.log('already here') //TODO add function for what happens when it is already here
-
     //This else occurs when a click is sucessful
     }else{
         //Play Sound
@@ -157,21 +168,28 @@ function handleBoardClick(e){
 
 //ai Functions
 function playAi(){
-    //Play Sound
     
-
     gameProperties.playerMovesEnabled = false
+
+    //this random amount of time makes the ai not react instatnly - the randomness gives it a more human feeling
     let randomTimeOut = Math.floor(Math.random() * 200) + 700
     setTimeout(function(){
         soundPlace.play()
+
+        //get the position of the ai. this logic is handled in thde ai.js file
         let aiMove = ai[gameProperties.aiDifficulty](gameBoard)
         let aiMoveCoords = convertIDtoArrayPos(aiMove)
+
+        //change the gameboard to represent that the ai has moved there
         gameBoard[aiMoveCoords[0]][aiMoveCoords[1]] = "2"
         let sqaureToChange = document.getElementById(`c${aiMove}`)
+
         sqaureToChange.textContent = players.player2.icon
         sqaureToChange.style.color = gameProperties.currentPlayer.color
         sqaureToChange.classList.add('player2Clicked')
         let solvedBoardDirection = solveBoard(gameBoard)
+
+        //Check for win or draw
         if (solvedBoardDirection === "draw"){
             gameDraw()
         }else if (solvedBoardDirection !== "none" && solvedBoardDirection !== "draw"){

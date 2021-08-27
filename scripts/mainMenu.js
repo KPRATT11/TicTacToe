@@ -1,3 +1,5 @@
+//This script is responsible for all the actions requred on the main menu
+
 //Get player 1 customization elements
 const player1Submit = document.querySelector('#player1Submit');
 const player1ElementProperties = {
@@ -7,17 +9,27 @@ const player1ElementProperties = {
 
 //Get player 2 customization elements
 const player2Submit = document.querySelector('#player2Submit')
+
+//This gets some of the elements, however not all. 
+//TODO - refactor so this onject holds all the elements
 const player2ElementProperties = {
     name: document.querySelector('#player2Name'),
     color: document.querySelector('#player2ColorPicker')
 }
 
+
+//This array contains all the letters used for the icons, becuase the Icons are a custom font
+//The letters here dont appear how they may in the game -- If i have time in the future I would like to create a system 
+//to have different icons incase the font doesnt load.
 const availableIcons = ['G','D','I','K','N','Y','S','H']
 let player1Icon = availableIcons[0]
 let player2Icon = availableIcons[1]
 
-//Uppdate if local storgae exists
+//update the settings to the current local storage if the local storage exists
 function updateOnStart(){
+
+    //we only check for the local storage item of players as if that doesnt exist then the rest of the 
+    //local storage either doesnt exist or is broken somehow and it is best to overwrite it
     if (localStorage.getItem('players') !== null){
         let playerData = JSON.parse(localStorage.getItem('players'))
         let gameObjectData = JSON.parse(localStorage.getItem('gameProperties'))
@@ -121,6 +133,8 @@ function generatePlayersObject(){
     return playersObject
 }
 
+
+//this generates the game proporties needed for when we switch from the main menu to the core game
 function generateGamePropertiesObject(){
     console.log(smartAi)
     let aiDifficulty
@@ -137,12 +151,7 @@ function generateGamePropertiesObject(){
     return gamePropertiesObject
 }
 
-
-//I know this code is absolute donkey shit I wrote it late at night Im sorry
-
 //Icon Selecting
-
-
 const player1LeftArrow = document.querySelector('#player1IconSelectorLeft')
 const player1RightArrow = document.querySelector('#player1IconSelectorRight')
 const player2LeftArrow = document.querySelector('#player2IconSelectorLeft')
@@ -181,6 +190,8 @@ function updateIcons(){
     player2IconDisplay.textContent = player2Icon
 }
 
+
+//This triggers the fly in animations for player Icons
 function animateIcons(player, direction){
     if (player === 1){
         if (direction === "left"){

@@ -1,9 +1,13 @@
 # TIC TAC TOE
+	PLAY: https://kpratt11.github.io/TicTacToe/index.html
 
 ## Technologies Used
 	HTML 5
 	CSS 3
 	JavaScript
+
+## Setup
+	To run you can either down the repository or visit https://kpratt11.github.io/TicTacToe/index.html
 
 ## Overview
 	This game allows you to play against real opponents or two types of ai,
@@ -13,7 +17,7 @@
 
 ## Features
 ### CUSTOMIZATION
-	I wanted to add the ability for players to customize the game, 
+	The game features the ability for players to customize the game, 
 	Players are able to customize 3 main parts about them selves.
 	
 
@@ -27,14 +31,14 @@
 ### AUDIO
 	The game features small audio sound effects to add to the expierence. 
 	using the html audio tags to store the audio within the page.
-	Using the javascript DOM audio API I can then trigger the audio
+	Using the javascript DOM audio API the code can then trigger the audio
 	sounds based on events happening within the game
 
 ### ANIMATIONS
 	The visual design on the game is fairly simple so in order to add
 	some much needed flair the game feature multiple CSS keyframe animations
 	These Animations are triggered through Javascript by assigning a class to
-	the element when I want the animation to trigger. The benifit of using 
+	the element when the game wants the animation to trigger. The benifit of using 
 	Javascript to trigger animations rather than css selectors is that 
 	it allows for more exact control over when animations are played
 
@@ -125,6 +129,14 @@
 	code that repeat and some of the files have become difficult to read.
 	if given more time I would have spent more time to make sure that my code 
 	base fits in with the DRY priniciple. 
+### Lessons Learnt
+	While pushing myself to take create so many feautres in such a small time was
+	a very difficult challenege it was also extremly rewarding, the satisfaction 
+	of creating an enjoyable game was well worth it. 
+
+	This project also allowed me to push my css abilities, and discover and learn
+	local storage. I futher picked up on someways that I can structure my code in
+	future in order to create cleaner more efficient code.
 #### INFO
 
 	This project was made by KEEGAN PRATT as part of the 

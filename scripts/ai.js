@@ -1,3 +1,5 @@
+
+//This object conatins the different algorithims for the AI. 
 const ai = {
     easy: function (gameboard) {
         let randomCoords = generateRandomXY();
@@ -7,7 +9,6 @@ const ai = {
         return randomCoords.join('-');
     },
     medium: function (gameboard) {
-        console.log(gameboard)
         let smartPosition = generateSmartPosition(gameboard, '2')
         if (smartPosition !== 'none'){
             return convertDirectionIndex(smartPosition);
@@ -48,18 +49,18 @@ function generateRandomXY(){
 }
 
 function generateSmartPosition(gameboard, checkPiece){
-    console.log(checkPiece)
     let returnVal = 'none'
     let boardDirections = getBoardDirections(gameboard);
         Object.keys(boardDirections).forEach(function (key) {
-            
             let boardDirection = boardDirections[key];
+
+            //filter board direction to make sure it only contains either blank spaces or the piece we are checking for
             let filBoardDirection = boardDirection.filter(e => e === checkPiece || e === '-')
             if (filBoardDirection.length === 3){
-                console.log('1')
+
+                //check if there is only one blank space, this means we should make a move there
                 filBoardDirection = filBoardDirection.filter(e => e === checkPiece)
                 if (filBoardDirection.length === 2){
-                    console.log(`2 is ${checkPiece}`)
                     returnVal = [boardDirection.indexOf('-'), key]
                 }
             }
