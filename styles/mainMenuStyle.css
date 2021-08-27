@@ -36,6 +36,7 @@
     margin: 0;
 }
 .lvgIcon{
+    user-select: none;
     line-height: 60px;
     font-weight: 600;
     font-size: 26px;
@@ -267,6 +268,7 @@
     height: 90px;
 }
 .oponentType{
+    user-select: none;
     color: #fff;
     margin: 0;
     padding: 0 !important
@@ -283,21 +285,23 @@
     border-bottom: 3px solid #FFFFFF;
 }
 .roundsAmount{
+    user-select: none;
     color: white;
     font-size: 60px;
 }
 .roundsLabel{
+    user-select: none;
     color: white;
     font-size: 60px; 
 }
 .playerIcon{
+    user-select: none;
     font-family: 'gameIcon' !important;
 }
 .playerColorPicker{
-   border: none;
-
-   width: 60px;
-   height: 60px
+    border: none;
+    width: 60px;
+    height: 60px
 }
 .playerColorPicker:hover{
     cursor: pointer;

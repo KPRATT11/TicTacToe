@@ -38,6 +38,7 @@ body{
     height: min-content;
 }
 .displayMessage{
+    user-select: none;
     text-shadow: 2px 5px 8px rgba(0,0,0,0.25);
     font-size: 60px;
     color: #329DFF;
