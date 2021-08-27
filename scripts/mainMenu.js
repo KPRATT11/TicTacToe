@@ -12,6 +12,45 @@ const player2ElementProperties = {
     color: document.querySelector('#player2ColorPicker')
 }
 
+const availableIcons = ['G','D','I','K','N','Y','S','H']
+let player1Icon = availableIcons[0]
+let player2Icon = availableIcons[1]
+
+//Uppdate if local storgae exists
+function updateOnStart(){
+    if (localStorage.getItem('players') !== null){
+        let playerData = JSON.parse(localStorage.getItem('players'))
+        let gameObjectData = JSON.parse(localStorage.getItem('gameProperties'))
+        player1ElementProperties.name.value = playerData.player1.name
+        player2ElementProperties.name.value = playerData.player2.name
+
+        player1ElementProperties.color.value = playerData.player1.color
+        player2ElementProperties.color.value = playerData.player2.color
+
+        console.log(playerData.player1.icon)
+        player1Icon = playerData.player1.icon
+        player2Icon = playerData.player2.icon
+
+        if (gameObjectData.aiDifficulty === "easy"){
+            smartAiEnabled = false
+            smartAi.checked = false
+        }else{
+            smartAiEnabled = true
+            smartAi.checked = true
+        }
+        aiEnabled = gameObjectData.aiEnabled
+        console.log(aiEnabled)
+        if (aiEnabled){
+            oponentType.textContent = "AI"
+        }else{
+            oponentType.textContent = "Player"
+        }
+        amountOfRounds = Number(gameObjectData.startingRounds)
+        roundAmountDisplayer.textContent = gameObjectData.startingRounds
+        updateIcons()
+    }
+}
+
 //This array checks for the players that are ready
 let playersReady = [false,false]
 
@@ -28,7 +67,7 @@ function playerReadyToggle(player){
     if (playersReady[0] && playersReady[1]){
         beginGame()
     }
-
+    
 }
 
 function playerReadyVisualToggle(player){
@@ -101,9 +140,7 @@ function generateGamePropertiesObject(){
 //I know this code is absolute donkey shit I wrote it late at night Im sorry
 
 //Icon Selecting
-const availableIcons = ['G','D','I','K','N','Y','S','H']
-let player1Icon = availableIcons[0]
-let player2Icon = availableIcons[1]
+
 
 const player1LeftArrow = document.querySelector('#player1IconSelectorLeft')
 const player1RightArrow = document.querySelector('#player1IconSelectorRight')
@@ -238,3 +275,5 @@ smartAi.addEventListener('click',() => {
     smartAiEnabled = !smartAiEnabled
     console.log(smartAiEnabled)
 })
+
+updateOnStart()

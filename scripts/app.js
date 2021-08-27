@@ -82,12 +82,13 @@ bst.attatchClickBindings(boardSlotsElement, handleBoardClick)
 
 //Handle Game Reset
 function resetGame(){
+    console.log(gameProperties.roundsLeft)
     if (players.player1.score === Math.ceil(gameProperties.startingRounds / 2) 
         || 
-        players.player2.score === Math.ceil(gameProperties.startingRounds / 2
+        players.player2.score === Math.ceil(gameProperties.startingRounds / 2)
         || 
-        gameProperties.roundsLeft === 0
-        )){
+        gameProperties.roundsLeft <= 1
+        ){
         localStorage.setItem('players', JSON.stringify(players))
         window.location.href = "./gameFinished.html"
     }
@@ -160,7 +161,7 @@ function playAi(){
     
 
     gameProperties.playerMovesEnabled = false
-    let randomTimeOut = Math.floor(Math.random() * 500) + 500
+    let randomTimeOut = Math.floor(Math.random() * 200) + 700
     setTimeout(function(){
         soundPlace.play()
         let aiMove = ai[gameProperties.aiDifficulty](gameBoard)
